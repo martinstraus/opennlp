@@ -9,9 +9,10 @@ import java.io.InputStreamReader;
 public class App {
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        
-        var recognizer = new IntentRecognizer(new File(args[0]));
-        var tagger = new Tagger(new File(args[1]));
+        var intentModelFile = args.length > 0 ? args[0] : "./src/main/models/es-intent.bin";
+        var recognizer = new IntentRecognizer(new File(intentModelFile));
+        var taggerModelFile = args.length > 1 ? args[1] : "./src/main/models/es-tagger.bin";
+        var tagger = new Tagger(new File(taggerModelFile));
         try ( var reader = new BufferedReader(new InputStreamReader(System.in))) {
             while (true) {
                 System.out.println("Enter text: ");
